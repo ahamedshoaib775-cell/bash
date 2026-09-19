@@ -101,11 +101,11 @@
   86%, 100% { transform: scaleX(0); }
 }
 
-/* ONCE MODE: build one time and stay */
-.bash-logo-svg.once .piece { animation: piece-in 1.4s cubic-bezier(.16, 1, .3, 1) both; animation-delay: var(--d, 0s); }
-.bash-logo-svg.once .dot   { animation: drop-in  1.4s cubic-bezier(.34, 1.56, .64, 1) both; animation-delay: var(--d, 0s); }
-.bash-logo-svg.once .rise  { animation: rise-in  1.2s cubic-bezier(.16, 1, .3, 1) both; animation-delay: var(--d, 0s); }
-.bash-logo-svg.once .rule  { animation: grow-in  1.4s cubic-bezier(.16, 1, .3, 1) both; animation-delay: var(--d, 0s); }
+/* ONCE MODE: build one time and stay - Slower unhurried timing */
+.bash-logo-svg.once .piece { animation: piece-in 2.2s cubic-bezier(.16, 1, .3, 1) both; animation-delay: var(--d, 0s); }
+.bash-logo-svg.once .dot   { animation: drop-in  2.0s cubic-bezier(.34, 1.56, .64, 1) both; animation-delay: var(--d, 0s); }
+.bash-logo-svg.once .rise  { animation: rise-in  1.8s cubic-bezier(.16, 1, .3, 1) both; animation-delay: var(--d, 0s); }
+.bash-logo-svg.once .rule  { animation: grow-in  2.2s cubic-bezier(.16, 1, .3, 1) both; animation-delay: var(--d, 0s); }
 
 @keyframes piece-in {
   from { transform: translate(var(--x), var(--y)) rotate(var(--r)); stroke-dashoffset: 1; opacity: 0; }
@@ -183,11 +183,17 @@ html.lenis, html.lenis body {
   transition: transform 0.2s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-/* Prevent horizontal scroll on touch devices */
+/* Prevent horizontal scroll and disable all animations on mobile except loading screen */
 @media (max-width: 768px) {
   html, body {
     overflow-x: hidden !important;
     position: relative;
     width: 100%;
   }
+
+  /* Remove all CSS keyframe animations & transitions on mobile EXCEPT loading screen */
+  body *:not(.loading-screen, .loading-screen *) {
+    animation: none !important;
+  }
 }
+

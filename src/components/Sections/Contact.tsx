@@ -12,6 +12,7 @@ export const Contact: React.FC = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const { setCursor, resetCursor } = useCursor();
+  const isMobile = typeof window !== 'undefined' && (window.innerWidth < 768 || window.matchMedia('(hover: none) and (pointer: coarse)').matches);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -47,15 +48,15 @@ export const Contact: React.FC = () => {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start mt-10 sm:mt-14">
         {/* Left Column: Form */}
         <motion.div
-          initial={{ opacity: 0, y: 25 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={isMobile ? false : { opacity: 0, y: 25 }}
+          whileInView={isMobile ? undefined : { opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
           className="lg:col-span-7 bg-[#FAFAF8] border border-[#DDDDD8] p-5 sm:p-8 md:p-10 rounded-lg space-y-6 sm:space-y-8 w-full"
         >
           {isSubmitted ? (
             <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
+              initial={isMobile ? false : { opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               className="py-12 text-center space-y-4"
             >
@@ -155,8 +156,8 @@ export const Contact: React.FC = () => {
 
         {/* Right Column: Contact Details + BASH Official Logo Presentation */}
         <motion.div
-          initial={{ opacity: 0, y: 25 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={isMobile ? false : { opacity: 0, y: 25 }}
+          whileInView={isMobile ? undefined : { opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7, delay: 0.15 }}
           className="lg:col-span-5 space-y-8 flex flex-col justify-between w-full"

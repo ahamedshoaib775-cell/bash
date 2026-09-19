@@ -60,6 +60,7 @@ const PLANS = [
 
 export const Pricing: React.FC = () => {
   const { setCursor, resetCursor } = useCursor();
+  const isMobile = typeof window !== 'undefined' && (window.innerWidth < 768 || window.matchMedia('(hover: none) and (pointer: coarse)').matches);
 
   const scrollToContact = () => {
     const el = document.querySelector('#contact');
@@ -78,8 +79,8 @@ export const Pricing: React.FC = () => {
         {PLANS.map((plan, idx) => (
           <motion.div
             key={plan.name}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={isMobile ? false : { opacity: 0, y: 30 }}
+            whileInView={isMobile ? undefined : { opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: idx * 0.08 }}
             onMouseEnter={() => setCursor('hover')}

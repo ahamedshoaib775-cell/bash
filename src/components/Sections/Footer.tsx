@@ -123,7 +123,7 @@ export const Footer: React.FC = () => {
               <p className="text-white font-bold">hello@bash.com</p>
               <p>CHENNAI, INDIA</p>
               <div className="pt-2 flex items-center gap-2 text-gray-400">
-                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                <span className="w-2 h-2 rounded-full bg-emerald-400 md:animate-pulse" />
                 <span>{currentTime ? `${currentTime} IST` : 'LIVE TIME'}</span>
               </div>
             </div>

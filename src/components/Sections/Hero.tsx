@@ -16,6 +16,7 @@ const TRUSTED_BRANDS = [
 
 export const Hero: React.FC = () => {
   const { setCursor, resetCursor } = useCursor();
+  const isMobile = typeof window !== 'undefined' && (window.innerWidth < 768 || window.matchMedia('(hover: none) and (pointer: coarse)').matches);
 
   const heroContainerVariants: Variants = {
     hidden: { opacity: 0 },
@@ -29,7 +30,7 @@ export const Hero: React.FC = () => {
   };
 
   const itemVariants: Variants = {
-    hidden: { y: 25, opacity: 0 },
+    hidden: isMobile ? { opacity: 1, y: 0 } : { y: 25, opacity: 0 },
     visible: {
       y: 0,
       opacity: 1,
@@ -53,7 +54,7 @@ export const Hero: React.FC = () => {
       {/* Top Main Hero Grid */}
       <motion.div
         className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center"
-        initial="hidden"
+        initial={isMobile ? false : "hidden"}
         animate="visible"
         variants={heroContainerVariants}
       >
@@ -61,7 +62,7 @@ export const Hero: React.FC = () => {
         <div className="lg:col-span-7 space-y-5 sm:space-y-6 md:space-y-8">
           {/* Eyebrow tag */}
           <motion.div variants={itemVariants} className="inline-flex items-center gap-2 max-w-full">
-            <span className="w-2 h-2 rounded-full bg-[#111111] animate-ping shrink-0" />
+            <span className={`w-2 h-2 rounded-full bg-[#111111] shrink-0 ${isMobile ? '' : 'animate-ping'}`} />
             <span className="text-[10px] sm:text-[11px] md:text-[12px] font-semibold tracking-eyebrow text-[#6B6B6B] uppercase font-mono truncate">
               WEB • SOFTWARE • AI • DIGITAL MARKETING
             </span>
@@ -134,8 +135,8 @@ export const Hero: React.FC = () => {
 
       {/* Trusted By Section */}
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
+        initial={isMobile ? false : { opacity: 0, y: 20 }}
+        whileInView={isMobile ? undefined : { opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6, delay: 0.2 }}
         className="mt-12 sm:mt-16 md:mt-24 pt-6 sm:pt-8 border-t border-[#DDDDD8] flex flex-col md:flex-row md:items-center justify-between gap-4 sm:gap-6"

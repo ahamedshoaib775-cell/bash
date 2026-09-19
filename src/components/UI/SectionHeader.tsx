@@ -17,8 +17,10 @@ export const SectionHeader: React.FC<SectionHeaderProps> = ({
   align = 'left',
   className = '',
 }) => {
+  const isMobile = typeof window !== 'undefined' && (window.innerWidth < 768 || window.matchMedia('(hover: none) and (pointer: coarse)').matches);
+
   const containerVariants: Variants = {
-    hidden: { opacity: 0 },
+    hidden: isMobile ? { opacity: 1 } : { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
@@ -29,7 +31,7 @@ export const SectionHeader: React.FC<SectionHeaderProps> = ({
   };
 
   const lineVariants: Variants = {
-    hidden: { y: 40, opacity: 0, filter: 'blur(6px)' },
+    hidden: isMobile ? { y: 0, opacity: 1, filter: 'blur(0px)' } : { y: 40, opacity: 0, filter: 'blur(6px)' },
     visible: {
       y: 0,
       opacity: 1,
@@ -44,8 +46,8 @@ export const SectionHeader: React.FC<SectionHeaderProps> = ({
   return (
     <motion.div
       className={`space-y-4 max-w-3xl ${align === 'center' ? 'mx-auto text-center' : ''} ${className}`}
-      initial="hidden"
-      whileInView="visible"
+      initial={isMobile ? false : "hidden"}
+      whileInView={isMobile ? undefined : "visible"}
       viewport={{ once: true, margin: '-80px' }}
       variants={containerVariants}
     >

@@ -52,6 +52,7 @@ const SERVICES_DATA = [
 const ServiceCard: React.FC<{ service: (typeof SERVICES_DATA)[0]; index: number }> = ({ service, index }) => {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const { setCursor, resetCursor } = useCursor();
+  const isMobile = typeof window !== 'undefined' && (window.innerWidth < 768 || window.matchMedia('(hover: none) and (pointer: coarse)').matches);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const rect = e.currentTarget.getBoundingClientRect();
@@ -69,8 +70,8 @@ const ServiceCard: React.FC<{ service: (typeof SERVICES_DATA)[0]; index: number 
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 25 }}
-      whileInView={{ opacity: 1, y: 0 }}
+      initial={isMobile ? false : { opacity: 0, y: 25 }}
+      whileInView={isMobile ? undefined : { opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-20px' }}
       transition={{ duration: 0.5, delay: index * 0.05, ease: [0.16, 1, 0.3, 1] }}
       onMouseMove={handleMouseMove}

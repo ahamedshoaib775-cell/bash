@@ -14,6 +14,7 @@ export const About: React.FC = () => {
   const statsRef = useRef<HTMLDivElement>(null);
   const isStatsInView = useInView(statsRef, { once: true, margin: '-40px' });
   const { setCursor, resetCursor } = useCursor();
+  const isMobile = typeof window !== 'undefined' && (window.innerWidth < 768 || window.matchMedia('(hover: none) and (pointer: coarse)').matches);
 
   // Scroll Parallax Hook
   const { scrollYProgress } = useScroll({
@@ -21,13 +22,14 @@ export const About: React.FC = () => {
     offset: ['start end', 'end start'],
   });
 
-  const scale = useTransform(scrollYProgress, [0, 1], [1.08, 1.0]);
-  const y = useTransform(scrollYProgress, [0, 1], [15, -15]);
+  const scale = useTransform(scrollYProgress, [0, 1], isMobile ? [1, 1] : [1.08, 1.0]);
+  const y = useTransform(scrollYProgress, [0, 1], isMobile ? [0, 0] : [15, -15]);
 
   // Cursor Hover Movement on image
   const [cursorOffset, setCursorOffset] = useState({ x: 0, y: 0 });
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (isMobile) return;
     const rect = e.currentTarget.getBoundingClientRect();
     const x = (e.clientX - rect.left - rect.width / 2) * 0.05;
     const y = (e.clientY - rect.top - rect.height / 2) * 0.05;
@@ -50,8 +52,8 @@ export const About: React.FC = () => {
       <div className="flex flex-col lg:grid lg:grid-cols-12 gap-10 lg:gap-16 items-start mt-10 sm:mt-14">
         {/* Story + HQ Location + 3-Column Mobile Statistics */}
         <motion.div
-          initial={{ opacity: 0, y: 25 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={isMobile ? false : { opacity: 0, y: 25 }}
+          whileInView={isMobile ? undefined : { opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
           className="lg:col-span-6 space-y-8 w-full"
@@ -70,8 +72,8 @@ export const About: React.FC = () => {
             {STATS.map((stat, idx) => (
               <motion.div
                 key={stat.label}
-                initial={{ opacity: 0, y: 15 }}
-                animate={isStatsInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 15 }}
+                initial={isMobile ? false : { opacity: 0, y: 15 }}
+                animate={isMobile ? { opacity: 1, y: 0 } : (isStatsInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 15 })}
                 transition={{ duration: 0.5, delay: idx * 0.12 }}
                 className="text-center sm:text-left space-y-1"
               >
@@ -101,8 +103,8 @@ export const About: React.FC = () => {
         {/* Workspace Parallax Image */}
         <motion.div
           ref={imageContainerRef}
-          initial={{ opacity: 0, scale: 0.96 }}
-          whileInView={{ opacity: 1, scale: 1 }}
+          initial={isMobile ? false : { opacity: 0, scale: 0.96 }}
+          whileInView={isMobile ? undefined : { opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
           className="lg:col-span-6 w-full relative overflow-hidden rounded-lg border border-[#DDDDD8] aspect-[4/3] bg-[#FAFAF8] group"

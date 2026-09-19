@@ -177,6 +177,7 @@ const WebsiteBrowserFrame: React.FC<{ project: Project }> = ({ project }) => {
 export const Portfolio: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState<string>('All');
   const { setCursor, resetCursor } = useCursor();
+  const isMobile = typeof window !== 'undefined' && (window.innerWidth < 768 || window.matchMedia('(hover: none) and (pointer: coarse)').matches);
 
   const filteredProjects = PROJECTS_DATA.filter((p) =>
     activeCategory === 'All' ? true : p.category === activeCategory
@@ -223,8 +224,8 @@ export const Portfolio: React.FC = () => {
             return (
               <motion.div
                 key={project.id}
-                layout
-                initial={{ opacity: 0, scale: 0.94 }}
+                layout={!isMobile}
+                initial={isMobile ? false : { opacity: 0, scale: 0.94 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.94 }}
                 transition={{ duration: 0.5, ease: 'easeOut' }}
