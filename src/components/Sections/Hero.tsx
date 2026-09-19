@@ -145,22 +145,22 @@ export const Hero: React.FC = () => {
           across industries.
         </p>
 
-        {/* Brand Logos / Domains */}
-        <div className="flex flex-wrap items-center gap-4 sm:gap-6 md:gap-10">
+        {/* Brand Logos / Domains Grid */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:flex md:flex-wrap items-center gap-2.5 sm:gap-6 md:gap-10">
           {TRUSTED_BRANDS.map((brand) => (
             <a
               key={brand.domain}
               href={brand.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-1.5 sm:gap-2 group cursor-pointer active:scale-95 transition-transform"
+              className="flex items-center justify-between sm:justify-start gap-1.5 sm:gap-2 group cursor-pointer active:scale-95 transition-transform p-2 sm:p-0 rounded bg-[#FAFAF8] sm:bg-transparent border border-[#DDDDD8] sm:border-none"
               onMouseEnter={() => setCursor('hover')}
               onMouseLeave={resetCursor}
             >
-              <span className="font-display font-extrabold text-sm sm:text-base md:text-lg text-[#111111]/60 group-hover:text-[#111111] transition-colors tracking-tight uppercase">
+              <span className="font-display font-extrabold text-xs sm:text-base md:text-lg text-[#111111]/70 group-hover:text-[#111111] transition-colors tracking-tight uppercase truncate">
                 {brand.name}
               </span>
-              <span className="text-[9px] font-mono text-[#6B6B6B]/70 border border-[#DDDDD8] group-hover:border-[#111111] px-1.5 py-0.5 rounded transition-colors lowercase">
+              <span className="text-[8px] sm:text-[9px] font-mono text-[#6B6B6B]/70 border border-[#DDDDD8] group-hover:border-[#111111] px-1.5 py-0.5 rounded transition-colors lowercase shrink-0">
                 {brand.domain}
               </span>
             </a>

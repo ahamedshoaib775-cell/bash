@@ -214,7 +214,7 @@ export const Portfolio: React.FC = () => {
       </div>
 
       {/* Filterable Portfolio Grid */}
-      <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mt-8 sm:mt-12">
+      <motion.div layout className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8 mt-6 sm:mt-12">
         <AnimatePresence mode="popLayout">
           {filteredProjects.map((project) => {
             const isInstagramProfile = project.category === 'Marketing';
@@ -235,43 +235,43 @@ export const Portfolio: React.FC = () => {
                 {/* Header Container: Instagram Profile Banner, Website Screenshot Frame, or Image */}
                 {isInstagramProfile ? (
                   /* Dedicated Instagram Profile Header Card */
-                  <div className="relative p-6 bg-[#111111] text-[#F7F7F5] flex flex-col justify-between aspect-[16/10] overflow-hidden">
+                  <div className="relative p-4 sm:p-6 bg-[#111111] text-[#F7F7F5] flex flex-col justify-between aspect-[16/10] overflow-hidden">
                     <div className="absolute inset-0 bg-gradient-to-br from-[#111111] via-[#1a1a1a] to-[#000000] opacity-90" />
                     
                     <div className="relative z-10 flex items-center justify-between">
-                      <div className="flex items-center gap-2">
-                        <div className="w-9 h-9 rounded-full bg-white/10 border border-white/20 flex items-center justify-center text-white">
-                          <InstagramIcon className="w-5 h-5" />
+                      <div className="flex items-center gap-1.5 sm:gap-2">
+                        <div className="w-7 h-7 sm:w-9 sm:h-9 rounded-full bg-white/10 border border-white/20 flex items-center justify-center text-white shrink-0">
+                          <InstagramIcon className="w-4 h-4 sm:w-5 sm:h-5" />
                         </div>
-                        <span className="font-mono text-xs font-bold tracking-wider text-white">
+                        <span className="font-mono text-[10px] sm:text-xs font-bold tracking-wider text-white truncate max-w-[120px] sm:max-w-none">
                           {project.metric}
                         </span>
                       </div>
-                      <span className="text-[9px] font-mono bg-white/20 text-white px-2 py-0.5 rounded uppercase tracking-widest border border-white/20">
-                        INSTAGRAM PROFILE
+                      <span className="text-[8px] sm:text-[9px] font-mono bg-white/20 text-white px-1.5 py-0.5 rounded uppercase tracking-widest border border-white/20">
+                        INSTAGRAM
                       </span>
                     </div>
 
-                    <div className="relative z-10 py-2 space-y-1">
-                      <h4 className="text-2xl font-bold font-display text-white tracking-tight">
+                    <div className="relative z-10 py-1 sm:py-2 space-y-0.5">
+                      <h4 className="text-lg sm:text-2xl font-bold font-display text-white tracking-tight">
                         {project.title}
                       </h4>
-                      <p className="text-xs text-gray-400 font-mono">
+                      <p className="text-[10px] sm:text-xs text-gray-400 font-mono truncate">
                         instagram.com/{project.metric?.replace('@', '')}
                       </p>
                     </div>
 
                     <div className="relative z-10 pt-2 border-t border-white/15 flex items-center justify-between">
-                      <span className="text-[11px] font-mono text-gray-300 uppercase tracking-wider">
+                      <span className="text-[9px] sm:text-[11px] font-mono text-gray-300 uppercase tracking-wider">
                         Official Profile
                       </span>
                       <a
                         href={project.link}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1.5 bg-white text-[#111111] text-xs font-bold px-3.5 py-1.5 rounded-full hover:bg-gray-200 transition-colors"
+                        className="inline-flex items-center gap-1 bg-white text-[#111111] text-[10px] sm:text-xs font-bold px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-full hover:bg-gray-200 transition-colors"
                       >
-                        <span>Visit Profile</span>
+                        <span>Visit</span>
                         <ExternalLink className="w-3 h-3" />
                       </a>
                     </div>
@@ -289,7 +289,7 @@ export const Portfolio: React.FC = () => {
                     />
                     
                     {project.metric && (
-                      <div className="absolute top-4 left-4 bg-[#111111]/90 backdrop-blur-md text-white font-mono text-[11px] px-3 py-1 rounded border border-white/20 tracking-wider flex items-center gap-1.5">
+                      <div className="absolute top-3 left-3 bg-[#111111]/90 backdrop-blur-md text-white font-mono text-[10px] sm:text-[11px] px-2.5 py-0.5 sm:py-1 rounded border border-white/20 tracking-wider flex items-center gap-1">
                         <span>{project.metric}</span>
                       </div>
                     )}
@@ -299,11 +299,11 @@ export const Portfolio: React.FC = () => {
                 )}
 
                 {/* Card Body */}
-                <div className="p-6 space-y-4 flex-1 flex flex-col justify-between">
-                  <div className="space-y-2">
-                    <div className="flex items-center justify-between text-xs font-mono text-[#6B6B6B]">
-                      <span>{project.subtitle}</span>
-                      <span className="uppercase tracking-widest font-semibold">{project.category}</span>
+                <div className="p-4 sm:p-6 space-y-3 sm:space-y-4 flex-1 flex flex-col justify-between">
+                  <div className="space-y-1.5 sm:space-y-2">
+                    <div className="flex items-center justify-between text-[10px] sm:text-xs font-mono text-[#6B6B6B]">
+                      <span className="truncate pr-2">{project.subtitle}</span>
+                      <span className="uppercase tracking-widest font-semibold shrink-0">{project.category}</span>
                     </div>
 
                     <a
@@ -312,23 +312,23 @@ export const Portfolio: React.FC = () => {
                       rel="noopener noreferrer"
                       className="block group/link"
                     >
-                      <h3 className="text-xl font-bold font-display text-[#111111] group-hover/link:text-black transition-colors flex items-center justify-between">
+                      <h3 className="text-base sm:text-xl font-bold font-display text-[#111111] group-hover/link:text-black transition-colors flex items-center justify-between">
                         <span>{project.title}</span>
-                        <ArrowUpRight className="w-5 h-5 opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                        <ArrowUpRight className="w-4 h-4 sm:w-5 sm:h-5 opacity-90 group-hover:opacity-100 transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                       </h3>
                     </a>
 
-                    <p className="text-sm text-[#6B6B6B] leading-relaxed line-clamp-3">
+                    <p className="text-xs sm:text-sm text-[#6B6B6B] leading-relaxed line-clamp-2 sm:line-clamp-3">
                       {project.description}
                     </p>
                   </div>
 
                   {/* Tech / Service Tags */}
-                  <div className="flex flex-wrap gap-2 pt-4 border-t border-[#DDDDD8]">
+                  <div className="flex flex-wrap gap-1.5 pt-3 border-t border-[#DDDDD8]">
                     {project.tags.map((tag) => (
                       <span
                         key={tag}
-                        className="text-[10px] font-mono text-[#6B6B6B] bg-[#F7F7F5] border border-[#DDDDD8] px-2.5 py-1 rounded"
+                        className="text-[9px] sm:text-[10px] font-mono text-[#6B6B6B] bg-[#F7F7F5] border border-[#DDDDD8] px-2 py-0.5 rounded"
                       >
                         {tag}
                       </span>
