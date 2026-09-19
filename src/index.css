@@ -167,8 +167,27 @@ html.lenis, html.lenis body {
   background: #111111;
 }
 
+/* Scrollbar hide utility */
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
 /* Magnet element transition */
 .magnetic-target {
   display: inline-block;
   transition: transform 0.2s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* Prevent horizontal scroll on touch devices */
+@media (max-width: 768px) {
+  html, body {
+    overflow-x: hidden !important;
+    position: relative;
+    width: 100%;
+  }
 }

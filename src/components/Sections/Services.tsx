@@ -63,51 +63,56 @@ const ServiceCard: React.FC<{ service: (typeof SERVICES_DATA)[0]; index: number 
 
   const IconComponent = service.icon;
 
+  const scrollToContact = () => {
+    document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
     <motion.div
-      initial={{ opacity: 0, y: 50, filter: 'blur(8px)' }}
-      whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-      viewport={{ once: true, margin: '-50px' }}
-      transition={{ duration: 0.7, delay: index * 0.08, ease: 'easeOut' }}
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: '-30px' }}
+      transition={{ duration: 0.6, delay: index * 0.06, ease: [0.16, 1, 0.3, 1] }}
       onMouseMove={handleMouseMove}
       onMouseEnter={() => setCursor('hover')}
       onMouseLeave={resetCursor}
-      className="relative bg-[#FAFAF8] border border-[#DCDCD7] hover:border-[#111111] p-8 rounded-lg transition-all duration-300 group overflow-hidden flex flex-col justify-between hover:-translate-y-2 hover:shadow-lg"
+      onClick={scrollToContact}
+      className="relative bg-[#FAFAF8] border border-[#DCDCD7] hover:border-[#111111] p-5 sm:p-6 rounded-lg transition-all duration-300 group overflow-hidden flex flex-col justify-between hover:shadow-md min-h-[150px] cursor-pointer active:scale-[0.98]"
     >
       {/* Subtle cursor-following radial highlight */}
       <div
-        className="pointer-events-none absolute -inset-px transition-opacity duration-300 opacity-0 group-hover:opacity-100"
+        className="pointer-events-none absolute -inset-px transition-opacity duration-300 opacity-0 group-hover:opacity-100 hidden md:block"
         style={{
           background: `radial-gradient(400px circle at ${mousePos.x}px ${mousePos.y}px, rgba(17, 17, 17, 0.04), transparent 80%)`,
         }}
       />
 
       {/* Top Header Row */}
-      <div className="space-y-6">
-        <div className="flex items-center justify-between border-b border-[#DCDCD7] pb-4">
+      <div className="space-y-4">
+        <div className="flex items-center justify-between border-b border-[#DCDCD7] pb-3">
           <span className="font-mono text-xs text-[#666666] tracking-widest font-semibold">
             {service.number}
           </span>
-          <div className="w-10 h-10 rounded-md bg-[#F5F5F2] border border-[#DCDCD7] flex items-center justify-center text-[#111111] group-hover:bg-[#111111] group-hover:text-[#F5F5F2] transition-colors duration-300">
-            <IconComponent className="w-5 h-5 transition-transform duration-300 group-hover:rotate-12 group-hover:scale-110" />
+          <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-md bg-[#F5F5F2] border border-[#DCDCD7] flex items-center justify-center text-[#111111] group-hover:bg-[#111111] group-hover:text-[#F5F5F2] transition-colors duration-300">
+            <IconComponent className="w-4 h-4 transition-transform duration-300 group-hover:rotate-12" />
           </div>
         </div>
 
         {/* Title */}
-        <h3 className="text-xl md:text-2xl font-bold font-display text-[#111111] group-hover:text-black">
+        <h3 className="text-lg sm:text-xl md:text-2xl font-bold font-display text-[#111111] group-hover:text-black">
           {service.title}
         </h3>
 
         {/* Description */}
-        <p className="text-sm text-[#666666] leading-relaxed">
+        <p className="text-xs sm:text-sm text-[#666666] leading-relaxed">
           {service.description}
         </p>
 
         {/* Features Checklist */}
-        <ul className="space-y-2 pt-2">
+        <ul className="space-y-1.5 pt-1">
           {service.features.map((feat) => (
             <li key={feat} className="text-xs text-[#666666] flex items-center gap-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#111111]" />
+              <span className="w-1.5 h-1.5 rounded-full bg-[#111111] shrink-0" />
               <span>{feat}</span>
             </li>
           ))}
@@ -115,12 +120,12 @@ const ServiceCard: React.FC<{ service: (typeof SERVICES_DATA)[0]; index: number 
       </div>
 
       {/* Bottom CTA Arrow Row */}
-      <div className="pt-8 flex items-center justify-between">
-        <span className="text-xs font-semibold uppercase tracking-wider text-[#111111] opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-          Learn More
+      <div className="pt-6 flex items-center justify-between">
+        <span className="text-[11px] sm:text-xs font-semibold uppercase tracking-wider text-[#111111] opacity-90 group-hover:opacity-100 transition-opacity duration-300">
+          Get Service →
         </span>
-        <div className="w-8 h-8 rounded-full border border-[#DCDCD7] group-hover:border-[#111111] flex items-center justify-center transition-all duration-300 group-hover:bg-[#111111] group-hover:text-white">
-          <ArrowUpRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+        <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full border border-[#DCDCD7] group-hover:border-[#111111] flex items-center justify-center transition-all duration-300 group-hover:bg-[#111111] group-hover:text-white">
+          <ArrowUpRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
         </div>
       </div>
     </motion.div>
@@ -129,15 +134,15 @@ const ServiceCard: React.FC<{ service: (typeof SERVICES_DATA)[0]; index: number 
 
 export const Services: React.FC = () => {
   return (
-    <section id="services" className="py-24 px-4 md:px-8 max-w-7xl mx-auto border-t border-[#DCDCD7]/80">
+    <section id="services" className="py-16 sm:py-20 md:py-24 px-4 sm:px-6 md:px-8 max-w-7xl mx-auto border-t border-[#DCDCD7]/80 overflow-x-hidden">
       <SectionHeader
         eyebrow="OUR SERVICES"
         title="Everything You Need Under One Roof."
         description="We offer a complete range of digital solutions to help your business build, automate and grow."
       />
 
-      {/* Grid of 6 Services */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-14">
+      {/* Grid of Services (1 card per row on mobile) */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 mt-10 sm:mt-14">
         {SERVICES_DATA.map((service, index) => (
           <ServiceCard key={service.number} service={service} index={index} />
         ))}

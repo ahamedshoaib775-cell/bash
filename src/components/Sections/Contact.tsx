@@ -37,21 +37,21 @@ export const Contact: React.FC = () => {
   };
 
   return (
-    <section id="contact" className="py-24 px-4 md:px-8 max-w-7xl mx-auto border-t border-[#DDDDD8]">
+    <section id="contact" className="py-16 sm:py-20 md:py-24 px-4 sm:px-6 md:px-8 max-w-7xl mx-auto border-t border-[#DDDDD8] overflow-x-hidden">
       <SectionHeader
         eyebrow="CONTACT"
         title="Let's Build Something Great Together."
         description="Have a project in mind? Fill out the form or reach out directly. We'd love to hear from you."
       />
 
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start mt-14">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start mt-10 sm:mt-14">
         {/* Left Column: Form */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 25 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="lg:col-span-7 bg-[#FAFAF8] border border-[#DDDDD8] p-8 md:p-10 rounded-lg space-y-8"
+          transition={{ duration: 0.7 }}
+          className="lg:col-span-7 bg-[#FAFAF8] border border-[#DDDDD8] p-5 sm:p-8 md:p-10 rounded-lg space-y-6 sm:space-y-8 w-full"
         >
           {isSubmitted ? (
             <motion.div
@@ -72,13 +72,13 @@ export const Contact: React.FC = () => {
                   setIsSubmitted(false);
                   setFormData({ name: '', email: '', message: '' });
                 }}
-                className="text-xs uppercase font-mono tracking-wider text-[#111111] underline cursor-pointer pt-4"
+                className="text-xs uppercase font-mono tracking-wider text-[#111111] underline cursor-pointer pt-4 active:scale-95 transition-transform"
               >
                 Send Another Message
               </button>
             </motion.div>
           ) : (
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form onSubmit={handleSubmit} className="space-y-5 sm:space-y-6">
               {/* Name Input */}
               <div className="relative">
                 <input
@@ -89,11 +89,11 @@ export const Contact: React.FC = () => {
                   value={formData.name}
                   onChange={handleChange}
                   placeholder=" "
-                  className="peer w-full bg-transparent border-b-2 border-[#DDDDD8] focus:border-[#111111] py-3 text-base text-[#111111] outline-none transition-colors"
+                  className="peer w-full bg-transparent border-b-2 border-[#DDDDD8] focus:border-[#111111] min-h-[52px] py-3.5 text-base text-[#111111] outline-none transition-colors"
                 />
                 <label
                   htmlFor="name"
-                  className="absolute left-0 top-3 text-sm text-[#6B6B6B] transition-all duration-200 pointer-events-none peer-focus:-top-3.5 peer-focus:text-xs peer-focus:text-[#111111] peer-[&:not(:placeholder-shown)]:-top-3.5 peer-[&:not(:placeholder-shown)]:text-xs peer-[&:not(:placeholder-shown)]:text-[#111111]"
+                  className="absolute left-0 top-3.5 text-sm text-[#6B6B6B] transition-all duration-200 pointer-events-none peer-focus:-top-3.5 peer-focus:text-xs peer-focus:text-[#111111] peer-[&:not(:placeholder-shown)]:-top-3.5 peer-[&:not(:placeholder-shown)]:text-xs peer-[&:not(:placeholder-shown)]:text-[#111111]"
                 >
                   Your Name *
                 </label>
@@ -109,11 +109,11 @@ export const Contact: React.FC = () => {
                   value={formData.email}
                   onChange={handleChange}
                   placeholder=" "
-                  className="peer w-full bg-transparent border-b-2 border-[#DDDDD8] focus:border-[#111111] py-3 text-base text-[#111111] outline-none transition-colors"
+                  className="peer w-full bg-transparent border-b-2 border-[#DDDDD8] focus:border-[#111111] min-h-[52px] py-3.5 text-base text-[#111111] outline-none transition-colors"
                 />
                 <label
                   htmlFor="email"
-                  className="absolute left-0 top-3 text-sm text-[#6B6B6B] transition-all duration-200 pointer-events-none peer-focus:-top-3.5 peer-focus:text-xs peer-focus:text-[#111111] peer-[&:not(:placeholder-shown)]:-top-3.5 peer-[&:not(:placeholder-shown)]:text-xs peer-[&:not(:placeholder-shown)]:text-[#111111]"
+                  className="absolute left-0 top-3.5 text-sm text-[#6B6B6B] transition-all duration-200 pointer-events-none peer-focus:-top-3.5 peer-focus:text-xs peer-focus:text-[#111111] peer-[&:not(:placeholder-shown)]:-top-3.5 peer-[&:not(:placeholder-shown)]:text-xs peer-[&:not(:placeholder-shown)]:text-[#111111]"
                 >
                   Your Email *
                 </label>
@@ -129,7 +129,7 @@ export const Contact: React.FC = () => {
                   value={formData.message}
                   onChange={handleChange}
                   placeholder=" "
-                  className="peer w-full bg-transparent border-b-2 border-[#DDDDD8] focus:border-[#111111] py-3 text-base text-[#111111] outline-none transition-colors resize-none"
+                  className="peer w-full bg-transparent border-b-2 border-[#DDDDD8] focus:border-[#111111] py-3.5 text-base text-[#111111] outline-none transition-colors resize-none"
                 />
                 <label
                   htmlFor="message"
@@ -140,10 +140,10 @@ export const Contact: React.FC = () => {
               </div>
 
               {/* Submit Button */}
-              <div className="pt-4">
+              <div className="pt-2">
                 <MagneticButton
                   onClick={() => {}}
-                  className="w-full bg-[#111111] text-[#FFFFFF] font-semibold text-sm py-4 rounded-full hover:bg-black transition-colors shadow-md flex items-center justify-center gap-2 group"
+                  className="w-full bg-[#111111] text-[#FFFFFF] font-semibold text-sm min-h-[52px] py-3.5 rounded-full hover:bg-black transition-colors shadow-md flex items-center justify-center gap-2 group active:scale-[0.98]"
                 >
                   <span>{isSubmitting ? 'Sending...' : 'Send Message'}</span>
                   <Send className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
@@ -155,22 +155,22 @@ export const Contact: React.FC = () => {
 
         {/* Right Column: Contact Details + BASH Official Logo Presentation */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 25 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="lg:col-span-5 space-y-10 flex flex-col justify-between"
+          transition={{ duration: 0.7, delay: 0.15 }}
+          className="lg:col-span-5 space-y-8 flex flex-col justify-between w-full"
         >
           {/* Direct Details */}
-          <div className="space-y-6">
+          <div className="space-y-4 sm:space-y-6">
             <h3 className="text-xl font-bold font-display text-[#111111]">
               Direct Contact
             </h3>
 
-            <div className="space-y-4">
+            <div className="space-y-3 sm:space-y-4">
               <a
                 href="mailto:hello@bash.com"
-                className="flex items-center gap-4 text-sm text-[#6B6B6B] hover:text-[#111111] transition-colors group p-3.5 rounded-lg border border-[#DDDDD8] bg-[#FAFAF8]"
+                className="flex items-center gap-4 text-sm text-[#6B6B6B] hover:text-[#111111] transition-colors group p-3.5 rounded-lg border border-[#DDDDD8] bg-[#FAFAF8] active:scale-[0.98]"
                 onMouseEnter={() => setCursor('hover')}
                 onMouseLeave={resetCursor}
               >
@@ -185,7 +185,7 @@ export const Contact: React.FC = () => {
 
               <a
                 href="tel:+919876543210"
-                className="flex items-center gap-4 text-sm text-[#6B6B6B] hover:text-[#111111] transition-colors group p-3.5 rounded-lg border border-[#DDDDD8] bg-[#FAFAF8]"
+                className="flex items-center gap-4 text-sm text-[#6B6B6B] hover:text-[#111111] transition-colors group p-3.5 rounded-lg border border-[#DDDDD8] bg-[#FAFAF8] active:scale-[0.98]"
                 onMouseEnter={() => setCursor('hover')}
                 onMouseLeave={resetCursor}
               >
@@ -210,10 +210,10 @@ export const Contact: React.FC = () => {
             </div>
           </div>
 
-          {/* Large BASH Logo Presentation */}
-          <div className="p-8 rounded-xl border border-[#DDDDD8] bg-[#FAFAF8] text-center flex flex-col items-center justify-center space-y-4">
-            <BashLogo size="xl" showWordmark={true} />
-            <p className="text-xs font-mono text-[#6B6B6B] uppercase tracking-widest pt-2">
+          {/* BASH Logo Presentation */}
+          <div className="p-6 sm:p-8 rounded-xl border border-[#DDDDD8] bg-[#FAFAF8] text-center flex flex-col items-center justify-center space-y-3">
+            <BashLogo size="lg" showWordmark={true} />
+            <p className="text-[11px] font-mono text-[#6B6B6B] uppercase tracking-widest pt-1">
               WE BUILD • WE AUTOMATE • WE GROW
             </p>
           </div>

@@ -67,26 +67,26 @@ export const Pricing: React.FC = () => {
   };
 
   return (
-    <section id="pricing" className="py-24 px-4 md:px-8 max-w-7xl mx-auto border-t border-[#DCDCD7]/80">
+    <section id="pricing" className="py-16 sm:py-20 md:py-24 px-4 sm:px-6 md:px-8 max-w-7xl mx-auto border-t border-[#DCDCD7]/80 overflow-x-hidden">
       <SectionHeader
         eyebrow="PRICING"
         title="Transparent Pricing. No Hidden Fees."
         description="Choose the plan that fits your business needs. Simple, predictable pricing tailored to drive measurable growth."
       />
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-14 items-stretch">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 mt-10 sm:mt-14 items-stretch">
         {PLANS.map((plan, idx) => (
           <motion.div
             key={plan.name}
-            initial={{ opacity: 0, y: 40 }}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.7, delay: idx * 0.1 }}
+            transition={{ duration: 0.6, delay: idx * 0.08 }}
             onMouseEnter={() => setCursor('hover')}
             onMouseLeave={resetCursor}
-            className={`relative rounded-lg p-8 flex flex-col justify-between transition-all duration-300 hover:-translate-y-2 hover:shadow-xl ${
+            className={`relative rounded-lg p-6 sm:p-8 flex flex-col justify-between transition-all duration-300 ${
               plan.popular
-                ? 'bg-[#111111] text-[#F5F5F2] border-2 border-[#111111] shadow-lg'
+                ? 'bg-[#111111] text-[#F5F5F2] border-2 border-[#111111] shadow-lg md:scale-105 my-2 md:my-0'
                 : 'bg-[#FAFAF8] text-[#111111] border border-[#DCDCD7] hover:border-[#111111]'
             }`}
           >
@@ -110,7 +110,7 @@ export const Pricing: React.FC = () => {
                 </span>
 
                 <div className="flex items-baseline gap-1 pt-1">
-                  <span className="text-4xl md:text-5xl font-extrabold font-display tracking-tight">
+                  <span className="text-3xl sm:text-4xl md:text-5xl font-extrabold font-display tracking-tight">
                     {plan.price}
                   </span>
                   <span className={`text-xs font-mono ${plan.popular ? 'text-gray-400' : 'text-[#666666]'}`}>
@@ -148,10 +148,10 @@ export const Pricing: React.FC = () => {
             </div>
 
             {/* CTA Button */}
-            <div className="pt-8 mt-6 border-t border-current/15">
+            <div className="pt-6 sm:pt-8 mt-6 border-t border-current/15">
               <MagneticButton
                 onClick={scrollToContact}
-                className={`w-full text-xs font-semibold py-3.5 px-6 rounded-full transition-colors flex items-center justify-center gap-2 group ${
+                className={`w-full text-xs font-semibold py-3.5 px-6 rounded-full transition-colors flex items-center justify-center gap-2 group min-h-[48px] active:scale-[0.98] ${
                   plan.popular
                     ? 'bg-[#F5F5F2] text-[#111111] hover:bg-white'
                     : 'bg-[#111111] text-[#F5F5F2] hover:bg-black'

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
+import { BashLogo } from '../UI/BashLogo';
 import { MagneticButton } from '../UI/MagneticButton';
-import { Menu, X, ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useCursor } from '../../context/CursorContext';
 
@@ -20,7 +21,7 @@ export const Navbar: React.FC = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 40) {
+      if (window.scrollY > 30) {
         setIsScrolled(true);
       } else {
         setIsScrolled(false);
@@ -47,18 +48,32 @@ export const Navbar: React.FC = () => {
     <>
       {/* Sticky Top Header Wrapper */}
       <header
-        className={`fixed top-0 left-0 right-0 z-50 flex justify-center px-4 transition-all duration-300 pointer-events-none ${
-          isScrolled ? 'pt-2 md:pt-3' : 'pt-4 md:pt-6'
+        className={`fixed top-0 left-0 right-0 z-50 flex justify-center px-3 sm:px-4 transition-all duration-300 pointer-events-none ${
+          isScrolled ? 'pt-2' : 'pt-3 md:pt-5'
         }`}
       >
         <nav
-          className={`pointer-events-auto transition-all duration-300 ease-out flex items-center justify-between ${
+          className={`pointer-events-auto transition-all duration-300 ease-out flex items-center justify-between w-full ${
             isScrolled
-              ? 'w-auto max-w-2xl md:max-w-3xl h-10 md:h-11 bg-[#F7F7F5]/95 backdrop-blur-md border border-[#DDDDD8] px-4 md:px-6 rounded-full shadow-sm gap-6 md:gap-8'
-              : 'w-full max-w-7xl bg-transparent py-2.5 px-4 md:px-8'
+              ? 'max-w-md md:max-w-3xl h-11 bg-[#F7F7F5]/95 backdrop-blur-md border border-[#DDDDD8] px-4 md:px-6 rounded-full shadow-sm'
+              : 'max-w-7xl bg-transparent py-2.5 px-4 md:px-8'
           }`}
         >
-          {/* Desktop Links */}
+          {/* Mobile & Desktop Official BASH Logo */}
+          <a
+            href="#home"
+            onClick={(e) => {
+              e.preventDefault();
+              handleLinkClick('#home');
+            }}
+            className="flex items-center cursor-pointer group h-6 overflow-hidden"
+            onMouseEnter={() => setCursor('hover')}
+            onMouseLeave={resetCursor}
+          >
+            <BashLogo size="nav" showWordmark={true} />
+          </a>
+
+          {/* Desktop Navigation Links */}
           <div className="hidden md:flex items-center gap-5 lg:gap-7">
             {NAV_LINKS.map((link) => (
               <a
@@ -90,14 +105,35 @@ export const Navbar: React.FC = () => {
             </MagneticButton>
           </div>
 
-          {/* Mobile Menu Trigger Button */}
+          {/* Mobile Menu Icon: 3 thin horizontal lines [☰] -> X */}
           <button
             type="button"
             onClick={toggleMobileMenu}
-            className="md:hidden p-2 text-[#111111] focus:outline-none cursor-pointer"
+            aria-expanded={mobileMenuOpen}
             aria-label="Toggle Navigation Menu"
+            className="md:hidden p-2 text-[#111111] focus:outline-none cursor-pointer flex items-center justify-center rounded-full active:bg-[#DDDDD8]/40 transition-colors"
           >
-            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            <svg
+              className="w-5 h-5 transition-transform duration-300"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.75"
+              strokeLinecap="round"
+            >
+              {mobileMenuOpen ? (
+                <>
+                  <line x1="18" y1="6" x2="6" y2="18" />
+                  <line x1="6" y1="6" x2="18" y2="18" />
+                </>
+              ) : (
+                <>
+                  <line x1="3" y1="7" x2="21" y2="7" />
+                  <line x1="3" y1="12" x2="21" y2="12" />
+                  <line x1="3" y1="17" x2="21" y2="17" />
+                </>
+              )}
+            </svg>
           </button>
         </nav>
       </header>
@@ -106,54 +142,71 @@ export const Navbar: React.FC = () => {
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, y: '-100%' }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: '-100%' }}
-            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-            className="fixed inset-0 z-40 bg-[#F7F7F5] flex flex-col justify-between p-8 pt-28 md:hidden"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="fixed inset-0 z-40 bg-[#F7F7F5] flex flex-col justify-between p-6 sm:p-8 pt-[calc(env(safe-area-inset-top,0px)+5.5rem)] pb-[calc(env(safe-area-inset-bottom,0px)+2rem)] md:hidden overflow-y-auto"
           >
-            <div className="space-y-6">
-              <span className="text-[10px] tracking-eyebrow text-[#6B6B6B] uppercase font-mono">
+            <motion.div
+              initial={{ y: -15, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: -15, opacity: 0 }}
+              transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+              className="space-y-6"
+            >
+              <span className="text-[10px] tracking-eyebrow text-[#6B6B6B] uppercase font-mono block">
                 NAVIGATION
               </span>
 
-              <div className="flex flex-col space-y-4">
+              <div className="flex flex-col space-y-3">
                 {NAV_LINKS.map((link, idx) => (
                   <motion.a
                     key={link.name}
                     href={link.href}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.1 + idx * 0.08, duration: 0.4 }}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 10 }}
+                    transition={{
+                      delay: 0.08 + idx * 0.06,
+                      duration: 0.5,
+                      ease: [0.16, 1, 0.3, 1],
+                    }}
                     onClick={(e) => {
                       e.preventDefault();
                       handleLinkClick(link.href);
                     }}
-                    className="text-3xl font-display font-bold text-[#111111] hover:text-[#6B6B6B] transition-colors flex items-center justify-between border-b border-[#DDDDD8] pb-3"
+                    className="text-3xl font-display font-bold text-[#111111] hover:text-[#6B6B6B] active:translate-x-1 transition-all flex items-center justify-between border-b border-[#DDDDD8] pb-3"
                   >
                     <span>{link.name}</span>
                     <span className="text-xs font-mono text-[#6B6B6B]">0{idx + 1}</span>
                   </motion.a>
                 ))}
               </div>
-            </div>
+            </motion.div>
 
-            {/* Mobile Footer CTAs */}
-            <div className="space-y-4 pt-6 border-t border-[#DDDDD8]">
+            {/* Mobile Bottom CTA */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 10 }}
+              transition={{ delay: 0.45, duration: 0.5 }}
+              className="space-y-4 pt-6 border-t border-[#DDDDD8] mt-8"
+            >
               <a
                 href="#contact"
                 onClick={(e) => {
                   e.preventDefault();
                   handleLinkClick('#contact');
                 }}
-                className="w-full bg-[#111111] text-[#FFFFFF] text-sm font-semibold py-3.5 rounded-full flex items-center justify-center gap-2"
+                className="w-full bg-[#111111] text-[#FFFFFF] text-sm font-semibold py-4 rounded-full flex items-center justify-center gap-2 active:scale-[0.98] transition-transform shadow-md"
               >
                 <span>Get Started →</span>
               </a>
               <div className="text-center text-[11px] text-[#6B6B6B] font-mono">
                 hello@bash.com • Chennai, IN
               </div>
-            </div>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>

@@ -30,23 +30,23 @@ export const Footer: React.FC = () => {
   };
 
   return (
-    <footer className="bg-[#111111] text-[#F7F7F5] pt-20 pb-12 px-4 md:px-8 border-t border-[#111111]">
-      <div className="max-w-7xl mx-auto space-y-16">
+    <footer className="bg-[#111111] text-[#F7F7F5] pt-16 sm:pt-20 pb-[calc(env(safe-area-inset-bottom,0px)+3rem)] px-4 sm:px-6 md:px-8 border-t border-[#111111] overflow-x-hidden">
+      <div className="max-w-7xl mx-auto space-y-12 sm:space-y-16">
         {/* Top Minimalist Closing Statement & BASH Logo Header */}
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 pb-12 border-b border-gray-800">
-          <div className="space-y-4">
-            <span className="text-[11px] font-mono tracking-eyebrow text-gray-400 uppercase">
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 pb-10 sm:pb-12 border-b border-gray-800">
+          <div className="space-y-3 sm:space-y-4">
+            <span className="text-[10px] sm:text-[11px] font-mono tracking-eyebrow text-gray-400 uppercase">
               BASH DIGITAL AGENCY
             </span>
-            <h2 className="text-4xl sm:text-6xl md:text-7xl font-extrabold font-display tracking-tight leading-none uppercase">
+            <h2 className="text-3xl sm:text-5xl md:text-7xl font-extrabold font-display tracking-tight leading-none uppercase">
               We build.<br />
               We automate.<br />
               <span className="text-gray-400">We grow.</span>
             </h2>
           </div>
 
-          <div className="flex flex-col items-start lg:items-end gap-6">
-            <div className="bg-[#F7F7F5] p-4 rounded-xl">
+          <div className="flex flex-col items-start lg:items-end gap-5 sm:gap-6">
+            <div className="bg-[#F7F7F5] p-3.5 sm:p-4 rounded-xl">
               <BashLogo size="footer" showWordmark={true} />
             </div>
 
@@ -56,7 +56,7 @@ export const Footer: React.FC = () => {
                 e.preventDefault();
                 document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' });
               }}
-              className="inline-flex items-center gap-2 bg-[#F7F7F5] text-[#111111] font-semibold text-sm md:text-base px-8 py-4 rounded-full hover:bg-white transition-all shadow-md group"
+              className="inline-flex items-center gap-2 bg-[#F7F7F5] text-[#111111] font-semibold text-sm md:text-base px-6 sm:px-8 py-3.5 sm:py-4 rounded-full hover:bg-white active:scale-95 transition-all shadow-md group"
               onMouseEnter={() => setCursor('button')}
               onMouseLeave={resetCursor}
             >
@@ -67,10 +67,10 @@ export const Footer: React.FC = () => {
         </div>
 
         {/* Middle Navigation & Info Columns */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 sm:gap-10">
           {/* Col 1: Brand Info */}
-          <div className="space-y-4 md:col-span-1">
-            <div className="text-xl font-bold font-display tracking-widest text-[#F7F7F5]">
+          <div className="space-y-3 sm:space-y-4 sm:col-span-2 md:col-span-1">
+            <div className="text-lg sm:text-xl font-bold font-display tracking-widest text-[#F7F7F5]">
               BASH™
             </div>
             <p className="text-xs text-gray-400 leading-relaxed">
@@ -88,7 +88,7 @@ export const Footer: React.FC = () => {
                 <li key={item}>
                   <a
                     href={`#${item.toLowerCase()}`}
-                    className="text-gray-300 hover:text-white transition-colors"
+                    className="text-gray-300 hover:text-white transition-colors py-0.5 inline-block"
                     onMouseEnter={() => setCursor('hover')}
                     onMouseLeave={resetCursor}
                   >
@@ -131,12 +131,12 @@ export const Footer: React.FC = () => {
         </div>
 
         {/* Bottom Copyright & Scroll To Top */}
-        <div className="pt-8 border-t border-gray-800 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-400 font-mono">
+        <div className="pt-6 sm:pt-8 border-t border-gray-800 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-400 font-mono">
           <p>© {new Date().getFullYear()} BASH AGENCY. ALL RIGHTS RESERVED.</p>
           <button
             type="button"
             onClick={scrollToTop}
-            className="flex items-center gap-2 hover:text-white transition-colors cursor-pointer group"
+            className="flex items-center gap-2 hover:text-white transition-colors cursor-pointer group active:scale-95"
             onMouseEnter={() => setCursor('hover')}
             onMouseLeave={resetCursor}
           >

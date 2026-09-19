@@ -183,15 +183,15 @@ export const Portfolio: React.FC = () => {
   );
 
   return (
-    <section id="work" className="py-24 px-4 md:px-8 max-w-7xl mx-auto border-t border-[#DDDDD8]">
+    <section id="work" className="py-16 sm:py-20 md:py-24 px-4 sm:px-6 md:px-8 max-w-7xl mx-auto border-t border-[#DDDDD8] overflow-x-hidden">
       <SectionHeader
         eyebrow="OUR WORK"
         title="Some of Our Recent Work."
         description="A few client projects we've built & scaled. Each crafted with a clear goal — more traffic, higher engagement, and measurable revenue growth."
       />
 
-      {/* Category Filter Pills */}
-      <div className="flex flex-wrap items-center gap-3 mt-10">
+      {/* Horizontally Scrollable Category Filter Pills */}
+      <div className="flex items-center gap-2.5 mt-8 sm:mt-10 overflow-x-auto scrollbar-none py-2 -mx-4 px-4 sm:mx-0 sm:px-0 flex-nowrap shrink-0 snap-x">
         {CATEGORIES.map((cat) => {
           const isActive = activeCategory === cat;
           return (
@@ -201,7 +201,7 @@ export const Portfolio: React.FC = () => {
               onClick={() => setActiveCategory(cat)}
               onMouseEnter={() => setCursor('hover')}
               onMouseLeave={resetCursor}
-              className={`text-xs md:text-sm font-semibold uppercase tracking-wider px-5 py-2.5 rounded-full transition-all duration-300 cursor-pointer border ${
+              className={`text-xs font-semibold uppercase tracking-wider px-4 sm:px-5 py-2 sm:py-2.5 rounded-full transition-all duration-300 cursor-pointer border whitespace-nowrap shrink-0 snap-start active:scale-95 ${
                 isActive
                   ? 'bg-[#111111] text-[#F7F7F5] border-[#111111] shadow-sm'
                   : 'bg-[#FAFAF8] text-[#6B6B6B] border-[#DDDDD8] hover:border-[#111111] hover:text-[#111111]'
@@ -213,8 +213,8 @@ export const Portfolio: React.FC = () => {
         })}
       </div>
 
-      {/* Filterable Portfolio Grid with AnimatePresence */}
-      <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
+      {/* Filterable Portfolio Grid */}
+      <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mt-8 sm:mt-12">
         <AnimatePresence mode="popLayout">
           {filteredProjects.map((project) => {
             const isInstagramProfile = project.category === 'Marketing';
