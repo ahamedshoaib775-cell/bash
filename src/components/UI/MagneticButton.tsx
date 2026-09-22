@@ -7,6 +7,7 @@ interface MagneticButtonProps {
   onClick?: () => void;
   href?: string;
   cursorMode?: 'button' | 'hover';
+  strength?: number;
 }
 
 export const MagneticButton: React.FC<MagneticButtonProps> = ({
@@ -15,6 +16,7 @@ export const MagneticButton: React.FC<MagneticButtonProps> = ({
   onClick,
   href,
   cursorMode = 'button',
+  strength = 0.25,
 }) => {
   const buttonRef = useRef<HTMLButtonElement & HTMLAnchorElement>(null);
   const [position, setPosition] = useState({ x: 0, y: 0 });
@@ -36,8 +38,8 @@ export const MagneticButton: React.FC<MagneticButtonProps> = ({
     const centerX = left + width / 2;
     const centerY = top + height / 2;
 
-    const distanceX = (e.clientX - centerX) * 0.25;
-    const distanceY = (e.clientY - centerY) * 0.25;
+    const distanceX = (e.clientX - centerX) * strength;
+    const distanceY = (e.clientY - centerY) * strength;
 
     setPosition({ x: distanceX, y: distanceY });
   };
@@ -70,7 +72,7 @@ export const MagneticButton: React.FC<MagneticButtonProps> = ({
       <a
         ref={buttonRef as any}
         href={href}
-        className={`magnetic-target inline-flex items-center justify-center cursor-pointer ${touchActiveClasses} ${className}`}
+        className={`magnetic-target inline-flex items-center justify-center whitespace-nowrap cursor-pointer ${touchActiveClasses} ${className}`}
         style={style}
         onMouseMove={handleMouseMove}
         onMouseEnter={handleMouseEnter}
@@ -86,7 +88,7 @@ export const MagneticButton: React.FC<MagneticButtonProps> = ({
     <button
       ref={buttonRef as any}
       type="button"
-      className={`magnetic-target inline-flex items-center justify-center cursor-pointer ${touchActiveClasses} ${className}`}
+      className={`magnetic-target inline-flex items-center justify-center whitespace-nowrap cursor-pointer ${touchActiveClasses} ${className}`}
       style={style}
       onMouseMove={handleMouseMove}
       onMouseEnter={handleMouseEnter}

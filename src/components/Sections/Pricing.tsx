@@ -8,8 +8,7 @@ import { useCursor } from '../../context/CursorContext';
 const PLANS = [
   {
     name: 'STARTER',
-    price: '₹4,999',
-    period: '/ project',
+    price: 'Custom Quote',
     description: 'Perfect for small businesses, local services, and early-stage startups.',
     popular: false,
     features: [
@@ -24,8 +23,7 @@ const PLANS = [
   },
   {
     name: 'BUSINESS',
-    price: '₹9,999',
-    period: '/ project',
+    price: 'Custom Quote',
     description: 'For growing businesses that need robust web apps and active lead growth.',
     popular: true,
     features: [
@@ -41,8 +39,7 @@ const PLANS = [
   },
   {
     name: 'ENTERPRISE',
-    price: '₹19,999+',
-    period: '/ project',
+    price: 'Custom Quote',
     description: 'For established brands requiring custom software, AI models, and marketing.',
     popular: false,
     features: [
@@ -70,9 +67,9 @@ export const Pricing: React.FC = () => {
   return (
     <section id="pricing" className="py-16 sm:py-20 md:py-24 px-4 sm:px-6 md:px-8 max-w-7xl mx-auto border-t border-[#DCDCD7]/80 overflow-x-hidden">
       <SectionHeader
-        eyebrow="PRICING"
-        title="Transparent Pricing. No Hidden Fees."
-        description="Choose the plan that fits your business needs. Simple, predictable pricing tailored to drive measurable growth."
+        eyebrow="PLANS"
+        title="Tailored Plans. Custom Quotes."
+        description="Choose the package that fits your business needs. Contact us for a custom proposal tailored specifically to your project."
       />
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 mt-10 sm:mt-14 items-stretch">
@@ -111,11 +108,8 @@ export const Pricing: React.FC = () => {
                 </span>
 
                 <div className="flex items-baseline gap-1 pt-1">
-                  <span className="text-3xl sm:text-4xl md:text-5xl font-extrabold font-display tracking-tight">
+                  <span className="text-2xl sm:text-3xl font-extrabold font-display tracking-tight">
                     {plan.price}
-                  </span>
-                  <span className={`text-xs font-mono ${plan.popular ? 'text-gray-400' : 'text-[#666666]'}`}>
-                    {plan.period}
                   </span>
                 </div>
 

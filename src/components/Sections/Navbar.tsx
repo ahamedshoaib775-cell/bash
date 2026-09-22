@@ -16,19 +16,39 @@ const NAV_LINKS = [
 
 export const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState('home');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { setCursor, resetCursor } = useCursor();
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 30) {
+      // 1. Toggle scrolled pill state
+      if (window.scrollY > 25) {
         setIsScrolled(true);
       } else {
         setIsScrolled(false);
       }
+
+      // 2. Active section ScrollSpy
+      const sections = NAV_LINKS.map((link) => link.href.substring(1));
+      const scrollPosition = window.scrollY + 140;
+
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const sectionId = sections[i];
+        const sectionEl = document.getElementById(sectionId);
+        if (sectionEl) {
+          const top = sectionEl.offsetTop;
+          const height = sectionEl.offsetHeight;
+          if (scrollPosition >= top && scrollPosition < top + height) {
+            setActiveSection(sectionId);
+            break;
+          }
+        }
+      }
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -40,7 +60,14 @@ export const Navbar: React.FC = () => {
     setMobileMenuOpen(false);
     const target = document.querySelector(href);
     if (target) {
-      target.scrollIntoView({ behavior: 'smooth' });
+      const headerOffset = 80;
+      const elementPosition = target.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth',
+      });
     }
   };
 
@@ -49,14 +76,14 @@ export const Navbar: React.FC = () => {
       {/* Sticky Top Header Wrapper */}
       <header
         className={`fixed top-0 left-0 right-0 z-50 flex justify-center px-3 sm:px-4 transition-all duration-300 pointer-events-none ${
-          isScrolled ? 'pt-2' : 'pt-3 md:pt-5'
+          isScrolled ? 'pt-2 md:pt-3.5' : 'pt-3 md:pt-6'
         }`}
       >
         <nav
           className={`pointer-events-auto transition-all duration-300 ease-out flex items-center justify-between w-full ${
             isScrolled
-              ? 'max-w-md md:max-w-3xl h-11 bg-[#F7F7F5]/95 backdrop-blur-md border border-[#DDDDD8] px-4 md:px-6 rounded-full shadow-sm'
-              : 'max-w-7xl bg-transparent py-2.5 px-4 md:px-8'
+              ? 'max-w-xs sm:max-w-md md:max-w-5xl h-12 bg-[#F7F7F5]/95 backdrop-blur-md border border-[#DDDDD8] pl-5 pr-5 md:pl-7 md:pr-5 rounded-full shadow-md shadow-black/[0.04]'
+              : 'max-w-7xl h-14 bg-transparent px-4 md:px-8 border border-transparent'
           }`}
         >
           {/* Mobile & Desktop Official BASH Logo */}
@@ -66,7 +93,7 @@ export const Navbar: React.FC = () => {
               e.preventDefault();
               handleLinkClick('#home');
             }}
-            className="flex items-center cursor-pointer group h-6 overflow-hidden"
+            className="flex items-center cursor-pointer group h-6 overflow-hidden mr-4 lg:mr-8 shrink-0"
             onMouseEnter={() => setCursor('hover')}
             onMouseLeave={resetCursor}
           >
@@ -74,34 +101,45 @@ export const Navbar: React.FC = () => {
           </a>
 
           {/* Desktop Navigation Links */}
-          <div className="hidden md:flex items-center gap-5 lg:gap-7">
-            {NAV_LINKS.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                onClick={(e) => {
-                  e.preventDefault();
-                  handleLinkClick(link.href);
-                }}
-                className="text-[11px] uppercase font-semibold tracking-wider text-[#6B6B6B] hover:text-[#111111] transition-colors relative py-0.5 group"
-                onMouseEnter={() => setCursor('hover')}
-                onMouseLeave={resetCursor}
-              >
-                {link.name}
-                <span className="absolute bottom-0 left-0 w-0 h-[1.5px] bg-[#111111] transition-all duration-300 group-hover:w-full" />
-              </a>
-            ))}
+          <div className="hidden md:flex items-center gap-4 lg:gap-7">
+            {NAV_LINKS.map((link) => {
+              const isActive = activeSection === link.href.substring(1);
+              return (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleLinkClick(link.href);
+                  }}
+                  className={`text-[11px] uppercase font-semibold tracking-wider transition-colors relative py-0.5 group whitespace-nowrap ${
+                    isActive ? 'text-[#111111]' : 'text-[#6B6B6B] hover:text-[#111111]'
+                  }`}
+                  onMouseEnter={() => setCursor('hover')}
+                  onMouseLeave={resetCursor}
+                >
+                  {link.name}
+                  <span
+                    className={`absolute bottom-0 left-0 h-[1.5px] bg-[#111111] transition-all duration-300 ${
+                      isActive ? 'w-full' : 'w-0 group-hover:w-full'
+                    }`}
+                  />
+                </a>
+              );
+            })}
           </div>
 
           {/* Desktop Right CTA */}
-          <div className="hidden md:block">
+          <div className="hidden md:flex items-center shrink-0 ml-4 lg:ml-8">
             <MagneticButton
               href="#contact"
               onClick={() => handleLinkClick('#contact')}
-              className="bg-[#111111] text-[#FFFFFF] text-[11px] font-semibold px-4 py-1.5 rounded-full hover:bg-black transition-colors shadow-sm flex items-center gap-1 group"
+              cursorMode="hover"
+              strength={0.08}
+              className="bg-[#111111] text-[#FFFFFF] text-[11px] font-semibold px-4 py-1.5 rounded-full hover:bg-black transition-colors shadow-sm flex flex-row items-center justify-center gap-1.5 group whitespace-nowrap shrink-0"
             >
-              <span>Get Started</span>
-              <ArrowUpRight className="w-3 h-3 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-200" />
+              <span className="whitespace-nowrap leading-none">Get Started</span>
+              <ArrowUpRight className="w-3 h-3 shrink-0 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-200" />
             </MagneticButton>
           </div>
 

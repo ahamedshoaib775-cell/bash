@@ -179,7 +179,9 @@ html.lenis, html.lenis body {
 
 /* Magnet element transition */
 .magnetic-target {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   transition: transform 0.2s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
