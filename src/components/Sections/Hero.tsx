@@ -49,7 +49,7 @@ export const Hero: React.FC = () => {
   return (
     <section
       id="home"
-      className="relative min-h-[85vh] md:min-h-screen pt-24 sm:pt-28 md:pt-36 pb-12 sm:pb-16 px-4 sm:px-6 md:px-8 max-w-7xl mx-auto flex flex-col justify-between overflow-x-hidden"
+      className="relative min-h-[85dvh] md:min-h-screen pt-24 sm:pt-28 md:pt-36 pb-12 sm:pb-16 px-4 sm:px-6 md:px-8 max-w-7xl mx-auto flex flex-col justify-between overflow-x-hidden pt-safe"
     >
       {/* Top Main Hero Grid */}
       <motion.div
@@ -71,7 +71,7 @@ export const Hero: React.FC = () => {
           {/* Main Hero Headline with Responsive Clamp */}
           <motion.h1
             variants={itemVariants}
-            className="text-[clamp(2.5rem,10.5vw,5rem)] sm:text-6xl md:text-7xl lg:text-8xl font-extrabold tracking-tight text-[#111111] font-display leading-[0.98] uppercase"
+            className="text-[clamp(2.25rem,9.5vw,5rem)] sm:text-6xl md:text-7xl lg:text-8xl font-extrabold tracking-tight text-[#111111] font-display leading-[0.98] uppercase"
           >
             Ideas <span className="inline-block transition-transform duration-300 hover:translate-x-1.5 text-[#6B6B6B] font-normal">→</span>
             <br />
@@ -93,7 +93,7 @@ export const Hero: React.FC = () => {
             <MagneticButton
               href="#contact"
               onClick={() => scrollToSection('#contact')}
-              className="bg-[#111111] text-[#FFFFFF] text-sm md:text-base font-semibold px-7 py-3.5 rounded-full hover:bg-black transition-colors shadow-md flex items-center justify-center gap-2 group w-full sm:w-auto"
+              className="bg-[#111111] text-[#FFFFFF] text-sm md:text-base font-semibold px-7 py-3.5 rounded-full hover:bg-black transition-colors shadow-md flex items-center justify-center gap-2 group w-full sm:w-auto min-h-[44px]"
             >
               <span>Get Started</span>
               <ArrowUpRight className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-200" />
@@ -103,7 +103,7 @@ export const Hero: React.FC = () => {
               href="#services"
               onClick={() => scrollToSection('#services')}
               cursorMode="hover"
-              className="bg-transparent text-[#111111] border border-[#DDDDD8] hover:border-[#111111] text-sm md:text-base font-medium px-7 py-3.5 rounded-full transition-colors flex items-center justify-center gap-2 group w-full sm:w-auto"
+              className="bg-transparent text-[#111111] border border-[#DDDDD8] hover:border-[#111111] text-sm md:text-base font-medium px-7 py-3.5 rounded-full transition-colors flex items-center justify-center gap-2 group w-full sm:w-auto min-h-[44px]"
             >
               <span>Explore Our Services</span>
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-200 text-[#6B6B6B]" />
@@ -114,11 +114,11 @@ export const Hero: React.FC = () => {
         {/* Right Column BASH Animated SVG Logo Presentation Area */}
         <motion.div
           variants={itemVariants}
-          className="lg:col-span-5 relative flex flex-col items-center justify-center p-2 sm:p-4 min-h-[300px] sm:min-h-[380px] lg:min-h-[460px] text-center mt-6 lg:mt-0"
+          className="lg:col-span-5 relative flex flex-col items-center justify-center p-2 sm:p-4 min-h-[260px] sm:min-h-[380px] lg:min-h-[460px] text-center mt-6 lg:mt-0"
         >
           {/* Exact BASH Animated Interactive Logo SVG */}
-          <div className="w-full max-w-[320px] sm:max-w-[420px] lg:max-w-none flex items-center justify-center py-2 sm:py-4">
-            <BashLogo size="hero" mode="loop" includeTagline={false} interactive={true} />
+          <div className="w-full max-w-[280px] sm:max-w-[420px] lg:max-w-none flex items-center justify-center py-2 sm:py-4">
+            <BashLogo size="hero" mode="loop" includeTagline={false} interactive={!isMobile} />
           </div>
 
           {/* Minimal Tagline under Logo */}
@@ -154,7 +154,7 @@ export const Hero: React.FC = () => {
               href={brand.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-between sm:justify-start gap-1.5 sm:gap-2 group cursor-pointer active:scale-95 transition-transform p-2 sm:p-0 rounded bg-[#FAFAF8] sm:bg-transparent border border-[#DDDDD8] sm:border-none"
+              className="flex items-center justify-between sm:justify-start gap-1.5 sm:gap-2 group cursor-pointer active:scale-95 transition-transform p-2.5 sm:p-0 rounded bg-[#FAFAF8] sm:bg-transparent border border-[#DDDDD8] sm:border-none min-h-[44px]"
               onMouseEnter={() => setCursor('hover')}
               onMouseLeave={resetCursor}
             >

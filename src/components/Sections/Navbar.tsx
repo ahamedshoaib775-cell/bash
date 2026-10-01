@@ -52,6 +52,29 @@ export const Navbar: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // 3. Lock body scroll when mobile drawer is open
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [mobileMenuOpen]);
+
+  // 4. Close drawer on Escape key press
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && mobileMenuOpen) {
+        setMobileMenuOpen(false);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [mobileMenuOpen]);
+
   const toggleMobileMenu = () => {
     setMobileMenuOpen((prev) => !prev);
   };
@@ -75,7 +98,7 @@ export const Navbar: React.FC = () => {
     <>
       {/* Sticky Top Header Wrapper */}
       <header
-        className={`fixed top-0 left-0 right-0 z-50 flex justify-center px-3 sm:px-4 transition-all duration-300 pointer-events-none ${
+        className={`fixed top-0 left-0 right-0 z-50 flex justify-center px-3 sm:px-4 transition-all duration-300 pointer-events-none pt-safe ${
           isScrolled ? 'pt-2 md:pt-3.5' : 'pt-3 md:pt-6'
         }`}
       >
@@ -93,7 +116,7 @@ export const Navbar: React.FC = () => {
               e.preventDefault();
               handleLinkClick('#home');
             }}
-            className="flex items-center cursor-pointer group h-6 overflow-hidden mr-4 lg:mr-8 shrink-0"
+            className="flex items-center cursor-pointer group h-6 overflow-hidden mr-4 lg:mr-8 shrink-0 min-h-[44px]"
             onMouseEnter={() => setCursor('hover')}
             onMouseLeave={resetCursor}
           >
@@ -143,13 +166,13 @@ export const Navbar: React.FC = () => {
             </MagneticButton>
           </div>
 
-          {/* Mobile Menu Icon: 3 thin horizontal lines [☰] -> X */}
+          {/* Mobile Menu Icon: 44x44px minimum tap target */}
           <button
             type="button"
             onClick={toggleMobileMenu}
             aria-expanded={mobileMenuOpen}
             aria-label="Toggle Navigation Menu"
-            className="md:hidden p-2 text-[#111111] focus:outline-none cursor-pointer flex items-center justify-center rounded-full active:bg-[#DDDDD8]/40 transition-colors"
+            className="md:hidden w-11 h-11 text-[#111111] focus:outline-none cursor-pointer flex items-center justify-center rounded-full active:bg-[#DDDDD8]/40 transition-colors shrink-0"
           >
             <svg
               className="w-5 h-5 transition-transform duration-300"
@@ -180,6 +203,9 @@ export const Navbar: React.FC = () => {
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
+            role="dialog"
+            aria-modal="true"
+            aria-label="Mobile Navigation"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -214,7 +240,7 @@ export const Navbar: React.FC = () => {
                       e.preventDefault();
                       handleLinkClick(link.href);
                     }}
-                    className="text-3xl font-display font-bold text-[#111111] hover:text-[#6B6B6B] active:translate-x-1 transition-all flex items-center justify-between border-b border-[#DDDDD8] pb-3"
+                    className="text-3xl font-display font-bold text-[#111111] hover:text-[#6B6B6B] active:translate-x-1 transition-all flex items-center justify-between border-b border-[#DDDDD8] pb-3 min-h-[44px]"
                   >
                     <span>{link.name}</span>
                     <span className="text-xs font-mono text-[#6B6B6B]">0{idx + 1}</span>
@@ -237,7 +263,7 @@ export const Navbar: React.FC = () => {
                   e.preventDefault();
                   handleLinkClick('#contact');
                 }}
-                className="w-full bg-[#111111] text-[#FFFFFF] text-sm font-semibold py-4 rounded-full flex items-center justify-center gap-2 active:scale-[0.98] transition-transform shadow-md"
+                className="w-full bg-[#111111] text-[#FFFFFF] text-sm font-semibold py-4 rounded-full flex items-center justify-center gap-2 active:scale-[0.98] transition-transform shadow-md min-h-[44px]"
               >
                 <span>Get Started →</span>
               </a>

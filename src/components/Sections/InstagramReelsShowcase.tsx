@@ -111,18 +111,18 @@ export const InstagramReelsShowcase: React.FC = () => {
         </div>
 
         {/* Campaign Highlights */}
-        <div className="flex items-center gap-6 md:gap-10 border-t md:border-t-0 md:border-l border-[#DDDDD8] pt-4 md:pt-0 md:pl-8">
+        <div className="grid grid-cols-3 sm:flex sm:items-center gap-3 sm:gap-6 md:gap-10 border-t md:border-t-0 md:border-l border-[#DDDDD8] pt-4 md:pt-0 md:pl-8 w-full md:w-auto text-center md:text-left">
           <div>
-            <p className="font-display font-bold text-2xl text-[#111111]">860K+</p>
-            <p className="text-[10px] font-mono text-[#6B6B6B] uppercase">Total Reel Views</p>
+            <p className="font-display font-bold text-xl sm:text-2xl text-[#111111]">860K+</p>
+            <p className="text-[9px] sm:text-[10px] font-mono text-[#6B6B6B] uppercase">Reel Views</p>
           </div>
           <div>
-            <p className="font-display font-bold text-2xl text-[#111111]">70K+</p>
-            <p className="text-[10px] font-mono text-[#6B6B6B] uppercase">Reel Engagement</p>
+            <p className="font-display font-bold text-xl sm:text-2xl text-[#111111]">70K+</p>
+            <p className="text-[9px] sm:text-[10px] font-mono text-[#6B6B6B] uppercase">Engagement</p>
           </div>
           <div>
-            <p className="font-display font-bold text-2xl text-[#111111]">+310%</p>
-            <p className="text-[10px] font-mono text-[#6B6B6B] uppercase">Sales Growth</p>
+            <p className="font-display font-bold text-xl sm:text-2xl text-[#111111]">+310%</p>
+            <p className="text-[9px] sm:text-[10px] font-mono text-[#6B6B6B] uppercase">Sales Growth</p>
           </div>
         </div>
 
@@ -131,7 +131,7 @@ export const InstagramReelsShowcase: React.FC = () => {
           href="https://www.instagram.com/reel/DJRHGdDyytJ/"
           target="_blank"
           rel="noopener noreferrer"
-          className="bg-[#111111] text-[#FFFFFF] text-xs font-semibold px-6 py-3 rounded-full hover:bg-black transition-colors flex items-center gap-2 group shrink-0"
+          className="bg-[#111111] text-[#FFFFFF] text-xs font-semibold px-6 py-3 rounded-full hover:bg-black transition-colors flex items-center justify-center gap-2 group shrink-0 w-full sm:w-auto min-h-[44px]"
           onMouseEnter={() => setCursor('button')}
           onMouseLeave={resetCursor}
         >

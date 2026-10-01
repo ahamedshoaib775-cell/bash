@@ -185,17 +185,36 @@ html.lenis, html.lenis body {
   transition: transform 0.2s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-/* Prevent horizontal scroll and disable all animations on mobile except loading screen */
-@media (max-width: 768px) {
-  html, body {
-    overflow-x: hidden !important;
-    position: relative;
-    width: 100%;
-  }
+/* Mobile & Responsive Base Enhancements */
+html, body {
+  overflow-x: hidden !important;
+  width: 100%;
+  max-width: 100vw;
+  -webkit-tap-highlight-color: transparent;
+}
 
-  /* Remove all CSS keyframe animations & transitions on mobile EXCEPT loading screen */
-  body *:not(.loading-screen, .loading-screen *) {
-    animation: none !important;
+/* Touch manipulation & safe area utilities */
+.touch-target {
+  min-height: 44px;
+  min-width: 44px;
+  touch-action: manipulation;
+}
+
+.pt-safe {
+  padding-top: max(0.75rem, env(safe-area-inset-top, 0px));
+}
+
+.pb-safe {
+  padding-bottom: max(0.75rem, env(safe-area-inset-bottom, 0px));
+}
+
+/* Respect user preference for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }
 

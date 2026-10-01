@@ -83,12 +83,12 @@ export const Footer: React.FC = () => {
             <span className="text-xs font-mono font-bold tracking-widest text-gray-400 uppercase">
               NAVIGATION
             </span>
-            <ul className="space-y-2 text-xs">
+            <ul className="space-y-1.5 text-xs">
               {['Home', 'Services', 'Work', 'About', 'Pricing', 'Contact'].map((item) => (
                 <li key={item}>
                   <a
                     href={`#${item.toLowerCase()}`}
-                    className="text-gray-300 hover:text-white transition-colors py-0.5 inline-block"
+                    className="text-gray-300 hover:text-white transition-colors py-2.5 px-1 inline-flex items-center min-h-[44px]"
                     onMouseEnter={() => setCursor('hover')}
                     onMouseLeave={resetCursor}
                   >
@@ -120,7 +120,7 @@ export const Footer: React.FC = () => {
               CONTACT & HQ
             </span>
             <div className="text-xs text-gray-300 space-y-2 font-mono">
-              <a href="mailto:thebash.build@gmail.com" className="text-white font-bold hover:underline block truncate">thebash.build@gmail.com</a>
+              <a href="mailto:thebash.build@gmail.com" className="text-white font-bold hover:underline inline-block truncate min-h-[44px] py-2">thebash.build@gmail.com</a>
               <p>CHENNAI, INDIA</p>
               <div className="pt-2 flex items-center gap-2 text-gray-400">
                 <span className="w-2 h-2 rounded-full bg-emerald-400 md:animate-pulse" />
@@ -136,7 +136,7 @@ export const Footer: React.FC = () => {
           <button
             type="button"
             onClick={scrollToTop}
-            className="flex items-center gap-2 hover:text-white transition-colors cursor-pointer group active:scale-95"
+            className="flex items-center justify-center gap-2 hover:text-white transition-colors cursor-pointer group active:scale-95 min-h-[44px] min-w-[44px] px-4 rounded-full border border-gray-800 bg-gray-900/60"
             onMouseEnter={() => setCursor('hover')}
             onMouseLeave={resetCursor}
           >

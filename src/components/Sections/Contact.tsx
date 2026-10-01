@@ -100,6 +100,27 @@ export const Contact: React.FC = () => {
                 </label>
               </div>
 
+              {/* Name Input */}
+              <div className="relative">
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  required
+                  autoComplete="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  placeholder=" "
+                  className="peer w-full bg-transparent border-b-2 border-[#DDDDD8] focus:border-[#111111] min-h-[52px] py-3.5 text-base text-[#111111] outline-none transition-colors"
+                />
+                <label
+                  htmlFor="name"
+                  className="absolute left-0 top-3.5 text-sm text-[#6B6B6B] transition-all duration-200 pointer-events-none peer-focus:-top-3.5 peer-focus:text-xs peer-focus:text-[#111111] peer-[&:not(:placeholder-shown)]:-top-3.5 peer-[&:not(:placeholder-shown)]:text-xs peer-[&:not(:placeholder-shown)]:text-[#111111]"
+                >
+                  Your Name *
+                </label>
+              </div>
+
               {/* Email Input */}
               <div className="relative">
                 <input
@@ -107,6 +128,8 @@ export const Contact: React.FC = () => {
                   id="email"
                   name="email"
                   required
+                  inputMode="email"
+                  autoComplete="email"
                   value={formData.email}
                   onChange={handleChange}
                   placeholder=" "
@@ -168,14 +191,14 @@ export const Contact: React.FC = () => {
               Direct Contact
             </h3>
 
-            <div className="grid grid-cols-2 gap-2.5 sm:gap-3.5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3.5">
               <a
                 href="mailto:thebash.build@gmail.com"
-                className="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-3 text-sm text-[#6B6B6B] hover:text-[#111111] transition-colors group p-3 sm:p-3.5 rounded-lg border border-[#DDDDD8] bg-[#FAFAF8] active:scale-[0.98]"
+                className="flex items-center gap-3 text-sm text-[#6B6B6B] hover:text-[#111111] transition-colors group p-3.5 rounded-lg border border-[#DDDDD8] bg-[#FAFAF8] active:scale-[0.98] min-h-[44px]"
                 onMouseEnter={() => setCursor('hover')}
                 onMouseLeave={resetCursor}
               >
-                <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-md bg-[#111111] text-white flex items-center justify-center shrink-0">
+                <div className="w-9 h-9 rounded-md bg-[#111111] text-white flex items-center justify-center shrink-0">
                   <Mail className="w-4 h-4 sm:w-5 sm:h-5" />
                 </div>
                 <div className="min-w-0">
@@ -186,11 +209,11 @@ export const Contact: React.FC = () => {
 
               <a
                 href="tel:+919876543210"
-                className="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-3 text-sm text-[#6B6B6B] hover:text-[#111111] transition-colors group p-3 sm:p-3.5 rounded-lg border border-[#DDDDD8] bg-[#FAFAF8] active:scale-[0.98]"
+                className="flex items-center gap-3 text-sm text-[#6B6B6B] hover:text-[#111111] transition-colors group p-3.5 rounded-lg border border-[#DDDDD8] bg-[#FAFAF8] active:scale-[0.98] min-h-[44px]"
                 onMouseEnter={() => setCursor('hover')}
                 onMouseLeave={resetCursor}
               >
-                <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-md bg-[#111111] text-white flex items-center justify-center shrink-0">
+                <div className="w-9 h-9 rounded-md bg-[#111111] text-white flex items-center justify-center shrink-0">
                   <Phone className="w-4 h-4 sm:w-5 sm:h-5" />
                 </div>
                 <div className="min-w-0">

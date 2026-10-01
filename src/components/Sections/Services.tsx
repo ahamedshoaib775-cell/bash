@@ -142,8 +142,8 @@ export const Services: React.FC = () => {
         description="We offer a complete range of digital solutions to help your business build, automate and grow."
       />
 
-      {/* 2-Column Mobile Grid for Services */}
-      <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6 mt-8 sm:mt-14">
+      {/* Responsive Grid for Services (1-col on <360px, 2-col on 360px+, 3-col on desktop) */}
+      <div className="grid grid-cols-1 min-[360px]:grid-cols-2 lg:grid-cols-3 gap-3.5 sm:gap-6 mt-8 sm:mt-14">
         {SERVICES_DATA.map((service, index) => (
           <ServiceCard key={service.number} service={service} index={index} />
         ))}
