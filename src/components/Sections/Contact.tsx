@@ -170,7 +170,7 @@ export const Contact: React.FC = () => {
 
             <div className="grid grid-cols-2 gap-2.5 sm:gap-3.5">
               <a
-                href="mailto:hello@bash.com"
+                href="mailto:thebash.build@gmail.com"
                 className="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-3 text-sm text-[#6B6B6B] hover:text-[#111111] transition-colors group p-3 sm:p-3.5 rounded-lg border border-[#DDDDD8] bg-[#FAFAF8] active:scale-[0.98]"
                 onMouseEnter={() => setCursor('hover')}
                 onMouseLeave={resetCursor}
@@ -180,7 +180,7 @@ export const Contact: React.FC = () => {
                 </div>
                 <div className="min-w-0">
                   <p className="text-[9px] sm:text-[10px] font-mono text-[#6B6B6B] uppercase">EMAIL US</p>
-                  <p className="font-bold text-xs sm:text-sm text-[#111111] group-hover:underline truncate">hello@bash.com</p>
+                  <p className="font-bold text-xs sm:text-sm text-[#111111] group-hover:underline truncate">thebash.build@gmail.com</p>
                 </div>
               </a>
 

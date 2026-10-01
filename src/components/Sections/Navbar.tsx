@@ -242,7 +242,7 @@ export const Navbar: React.FC = () => {
                 <span>Get Started →</span>
               </a>
               <div className="text-center text-[11px] text-[#6B6B6B] font-mono">
-                hello@bash.com • Chennai, IN
+                thebash.build@gmail.com • Chennai, IN
               </div>
             </motion.div>
           </motion.div>
