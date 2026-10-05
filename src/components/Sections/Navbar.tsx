@@ -9,6 +9,7 @@ const NAV_LINKS = [
   { name: 'Home', href: '#home' },
   { name: 'Services', href: '#services' },
   { name: 'Work', href: '#work' },
+  { name: 'Catalog', href: '/catalog.html' },
   { name: 'About', href: '#about' },
   { name: 'Pricing', href: '#pricing' },
   { name: 'Contact', href: '#contact' },
@@ -30,7 +31,7 @@ export const Navbar: React.FC = () => {
       }
 
       // 2. Active section ScrollSpy
-      const sections = NAV_LINKS.map((link) => link.href.substring(1));
+      const sections = NAV_LINKS.filter(l => l.href.startsWith('#')).map((link) => link.href.substring(1));
       const scrollPosition = window.scrollY + 140;
 
       for (let i = sections.length - 1; i >= 0; i--) {
@@ -81,6 +82,10 @@ export const Navbar: React.FC = () => {
 
   const handleLinkClick = (href: string) => {
     setMobileMenuOpen(false);
+    if (href.startsWith('/')) {
+      window.location.href = href;
+      return;
+    }
     const target = document.querySelector(href);
     if (target) {
       const headerOffset = 80;
