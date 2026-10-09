@@ -21,7 +21,7 @@ const InstagramIcon: React.FC<{ className?: string }> = ({ className = 'w-4 h-4'
   </svg>
 );
 
-const CATEGORIES = ['All', 'Websites', 'Marketing', 'Automation'] as const;
+const CATEGORIES = ['Websites', 'Marketing', 'Automation'] as const;
 
 const PROJECTS_DATA: Project[] = [
   // --- Social Media Marketing Projects ---
@@ -175,7 +175,7 @@ const WebsiteBrowserFrame: React.FC<{ project: Project }> = ({ project }) => {
 };
 
 export const Portfolio: React.FC = () => {
-  const [activeCategory, setActiveCategory] = useState<string>('All');
+  const [activeCategory, setActiveCategory] = useState<string>('Websites');
   const { setCursor, resetCursor } = useCursor();
   const isMobile = typeof window !== 'undefined' && (window.innerWidth < 768 || window.matchMedia('(hover: none) and (pointer: coarse)').matches);
 

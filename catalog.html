@@ -676,7 +676,7 @@ PROJECTS.forEach((p, i) => {
 });
 
 /* filters */
-const FILTERS = [['all', 'All', PROJECTS.length]].concat(Object.keys(CATS).map(k => [k, CATS[k].name, PROJECTS.filter(p => p.cat === k).length]));
+const FILTERS = Object.keys(CATS).map(k => [k, CATS[k].name, PROJECTS.filter(p => p.cat === k).length]);
 FILTERS.forEach(([k, name, n], i) => {
   const b = document.createElement('button');
   b.type = 'button'; b.className = 'f'; b.dataset.cat = k; b.dataset.cursor = 'link';
@@ -688,7 +688,7 @@ function placeFilterBg(){
   const on = $('.f[aria-pressed="true"]', filtersEl); if (!on) return;
   fbg.style.width = on.offsetWidth + 'px';
   fbg.style.transform = 'translateX(' + on.offsetLeft + 'px)';
-  fbg.style.backgroundColor = on.dataset.cat === 'all' ? INK : CATS[on.dataset.cat].color;
+  fbg.style.backgroundColor = CATS[on.dataset.cat] ? CATS[on.dataset.cat].color : INK;
 }
 let cntShown = 0;
 function countTo(n){
