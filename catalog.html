@@ -229,7 +229,7 @@ html.js:not(.safe) .card:not(.in){opacity:0;transform:translateY(80px) rotate(va
   <main>
     <section class="hero" id="top">
       <div class="hero-top">
-        <p class="hero-sub">Websites, software, AI tools and growth plans. Here is a look at what we build.</p>
+        <p class="hero-sub">Websites, software, AI tools and digital marketing. Here is a look at what we build.</p>
         <div class="cue" aria-hidden="true"><span>Scroll</span><i></i></div>
       </div>
       <h1 class="wm" id="wm-hero" data-text="BASH">BASH</h1>
@@ -241,7 +241,7 @@ html.js:not(.safe) .card:not(.in){opacity:0;transform:translateY(80px) rotate(va
     </section>
 
     <section class="say" aria-label="What we make">
-      <p id="say" data-t="We make four kinds of things. {web:Websites} people enjoy using, {software:software} teams rely on, {ai:AI} that does real work, and {growth:growth} you can measure."></p>
+      <p id="say" data-t="We make four kinds of things. {web:Websites} people enjoy using, {software:software} teams rely on, {ai:AI} that does real work, and {marketing:digital marketing} you can measure."></p>
     </section>
 
     <section class="cat" id="catalog">
@@ -310,21 +310,14 @@ html.js:not(.safe) .card:not(.in){opacity:0;transform:translateY(80px) rotate(va
    REAL PROJECTS WITH LIVE WEBSITE PREVIEWS
    ===================================================================== */
 const CATS = {
-  web:      { name: 'Web',      color: '#2A44F0' },
-  software: { name: 'Software', color: '#0B7A6A' },
-  ai:       { name: 'AI',       color: '#6A3BE1' },
-  growth:   { name: 'Growth',   color: '#F5A700' }
+  web:       { name: 'Websites',          color: '#2A44F0' },
+  software:  { name: 'Software',          color: '#0B7A6A' },
+  ai:        { name: 'AI',                color: '#6A3BE1' },
+  marketing: { name: 'Digital Marketing', color: '#F5A700' }
 };
 
 const PROJECTS = [
-  { id:'binsense', cat:'web', wide:true,
-    title:'BinSense IoT Smart Waste System',
-    line:'Real-time IoT garbage level monitoring and automated overflow alerts.',
-    tags:['Next.js','React','IoT Dashboard','Tailwind CSS'],
-    image:'/binsense-home.png', metric:'binsense.in', link:'https://binsense.in',
-    summary:'Designed and developed the website for BinSense, an IoT-powered smart bin system monitoring garbage levels in real time using ultrasonic sensors and automated overflow alerts.',
-    did:['Real-time monitoring interface','Ultrasonic sensor integration','Automated overflow alert workflows'],
-    outcome:'Efficient real-time waste tracking and automated alert dispatch.' },
+  // --- WEBSITES ---
   { id:'cvianuae', cat:'web', wide:true,
     title:'CVian UAE Career & Licensing Portal',
     line:'Consultancy platform serving UAE, India, and UK.',
@@ -333,14 +326,6 @@ const PROJECTS = [
     summary:'Conversion-focused website for a UAE consultancy serving UAE, India, and UK. Features 3D service cards, dynamic testimonials, WhatsApp chat, and region-routed lead capture.',
     did:['Interactive 3D service showcase','Region-routed lead capture system','WhatsApp consultation integration'],
     outcome:'Streamlined client intake across UAE, India, and UK markets.' },
-  { id:'omniflow', cat:'ai', wide:true,
-    title:'OmniFlow Intelligent CRM',
-    line:'AI workflow and B2B lead enrichment pipeline.',
-    tags:['Python','Node.js','OpenAI API','Tailwind'],
-    image:'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1000&auto=format&fit=crop', metric:'40 Hrs Saved Weekly', link:'/#contact',
-    summary:'Automated B2B lead enrichment pipeline saving operations teams over 40 hours of manual data processing weekly.',
-    did:['Automated B2B lead enrichment pipeline','OpenAI API intelligent data extraction','CRM dashboard & sync'],
-    outcome:'Saved operations teams over 40 hours of manual data processing weekly.' },
   { id:'solescape', cat:'web',
     title:'SoleScape Real Estate Portal',
     line:'Property search, owner postings, and home services.',
@@ -357,28 +342,50 @@ const PROJECTS = [
     summary:'Trust-focused website for Chennai home-visit physiotherapy practice presenting specialists, treatment workflows, Google patient reviews, and one-tap WhatsApp booking.',
     did:['Patient review integration','Specialist profiles and treatment workflows','One-tap WhatsApp booking flow'],
     outcome:'Instant appointment bookings and improved local trust.' },
-  { id:'sipsocial', cat:'growth',
+
+  // --- SOFTWARE ---
+  { id:'binsense', cat:'software', wide:true,
+    title:'BinSense IoT Smart Waste System',
+    line:'Real-time IoT garbage level monitoring and automated overflow alerts.',
+    tags:['Next.js','React','IoT Dashboard','Tailwind CSS'],
+    image:'/binsense-home.png', metric:'binsense.in', link:'https://binsense.in',
+    summary:'Designed and developed the software & website for BinSense, an IoT-powered smart bin system monitoring garbage levels in real time using ultrasonic sensors and automated overflow alerts.',
+    did:['Real-time monitoring interface','Ultrasonic sensor integration','Automated overflow alert workflows'],
+    outcome:'Efficient real-time waste tracking and automated alert dispatch.' },
+
+  // --- AI ---
+  { id:'omniflow', cat:'ai', wide:true,
+    title:'OmniFlow Intelligent CRM',
+    line:'AI workflow and B2B lead enrichment pipeline.',
+    tags:['Python','Node.js','OpenAI API','Tailwind'],
+    image:'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1000&auto=format&fit=crop', metric:'40 Hrs Saved Weekly', link:'/#contact',
+    summary:'Automated B2B lead enrichment pipeline saving operations teams over 40 hours of manual data processing weekly.',
+    did:['Automated B2B lead enrichment pipeline','OpenAI API intelligent data extraction','CRM dashboard & sync'],
+    outcome:'Saved operations teams over 40 hours of manual data processing weekly.' },
+
+  // --- DIGITAL MARKETING ---
+  { id:'sipsocial', cat:'marketing',
     title:'Sip Social Strategy',
-    line:'Instagram social media management and brand strategy.',
-    tags:['Social Media','Brand Strategy','Instagram'],
+    line:'Brand strategy, content creation, and digital marketing.',
+    tags:['Brand Strategy','Digital Marketing','Content Strategy'],
     image:'https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=1000&auto=format&fit=crop', metric:'@sipsocial__', link:'https://www.instagram.com/sipsocial__/',
-    summary:'Complete Instagram social media management, brand strategy, content creation, and community engagement for @sipsocial__.',
-    did:['Resort wear content strategy','Targeted social growth','Community engagement'],
-    outcome:'Consistent brand presence and growth on Instagram.' },
-  { id:'kaftan', cat:'growth',
+    summary:'Complete digital marketing strategy, brand positioning, content creation, and audience growth for @sipsocial__.',
+    did:['Resort wear content strategy','Targeted digital campaigns','Audience engagement'],
+    outcome:'Consistent brand presence and digital growth.' },
+  { id:'kaftan', cat:'marketing',
     title:'The Kaftan Shop Growth',
-    line:'Fashion Instagram Reels and targeted social growth.',
-    tags:['Reels Production','E-Commerce Growth','Fashion Content'],
+    line:'Fashion video production and targeted marketing growth.',
+    tags:['Video Production','E-Commerce Growth','Digital Marketing'],
     image:'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=1000&auto=format&fit=crop', metric:'@the.kaftanshop', link:'https://www.instagram.com/the.kaftanshop/',
-    summary:'High-converting resort wear content strategy, Instagram Reel production, and targeted social growth for @the.kaftanshop.',
-    did:['Reels production and styling','Targeted ad campaigns','Visual growth strategy'],
+    summary:'High-converting resort wear content strategy, digital video production, and targeted market growth for @the.kaftanshop.',
+    did:['Video production and styling','Targeted ad campaigns','Visual growth strategy'],
     outcome:'Increased customer engagement and sales.' },
-  { id:'cookiery', cat:'growth', wide:true,
+  { id:'cookiery', cat:'marketing', wide:true,
     title:'The Cookiery Lab Marketing',
-    line:'Gourmet bakery food styling and local marketing.',
-    tags:['Food Marketing','Instagram Strategy','Visual Styling'],
+    line:'Gourmet bakery food styling and local digital marketing.',
+    tags:['Food Marketing','Digital Strategy','Visual Styling'],
     image:'https://images.unsplash.com/photo-1558961363-fa8fdf82db35?q=80&w=1000&auto=format&fit=crop', metric:'@the.cookierylab', link:'https://www.instagram.com/the.cookierylab/',
-    summary:'Aesthetic food styling, Instagram visual growth strategy, and local customer engagement marketing for @the.cookierylab.',
+    summary:'Aesthetic food styling, digital visual growth strategy, and local customer engagement marketing for @the.cookierylab.',
     did:['Aesthetic food styling','Local customer engagement','Content calendar'],
     outcome:'Higher local reach and customer inquiries.' }
 ];
@@ -392,7 +399,7 @@ const rnd = n => Math.random() * n | 0;
 const hs = s => [...s].reduce((a, c) => (a * 31 + c.charCodeAt(0)) >>> 0, 7);
 const root = document.documentElement;
 const P = '#F7F7F5', INK = '#111111';
-const PAL = [CATS.web.color, CATS.ai.color, CATS.software.color, CATS.growth.color];
+const PAL = [CATS.web.color, CATS.ai.color, CATS.software.color, CATS.marketing.color];
 
 /* ---------------- generative art for each card ---------------- */
 function rng(seed){ let a = seed >>> 0; return () => { a |= 0; a = a + 0x6D2B79F5 | 0; let t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
@@ -735,7 +742,7 @@ filtersEl.addEventListener('click', e => {
 });
 
 /* marquee */
-const MQ = [['Websites', 'c'], ['Software', 's'], ['AI tools', 't'], ['Growth', 'd']];
+const MQ = [['Websites', 'c'], ['Software', 's'], ['AI tools', 't'], ['Digital Marketing', 'd']];
 const mqRows = $$('.mq-row').map((el, i) => ({ el, dir: i % 2 ? -1 : 1, x: 0, gw: 1, order: i % 2 ? MQ.slice().reverse() : MQ }));
 function mqInit(){
   mqRows.forEach(r => {
