@@ -207,20 +207,19 @@ export const Contact: React.FC = () => {
                 </div>
               </a>
 
-              <a
-                href="tel:+919876543210"
-                className="flex items-center gap-3 text-sm text-[#6B6B6B] hover:text-[#111111] transition-colors group p-3.5 rounded-lg border border-[#DDDDD8] bg-[#FAFAF8] active:scale-[0.98] min-h-[44px]"
-                onMouseEnter={() => setCursor('hover')}
-                onMouseLeave={resetCursor}
-              >
+              <div className="flex items-center gap-3 text-sm text-[#6B6B6B] p-3.5 rounded-lg border border-[#DDDDD8] bg-[#FAFAF8]">
                 <div className="w-9 h-9 rounded-md bg-[#111111] text-white flex items-center justify-center shrink-0">
                   <Phone className="w-4 h-4 sm:w-5 sm:h-5" />
                 </div>
                 <div className="min-w-0">
                   <p className="text-[9px] sm:text-[10px] font-mono text-[#6B6B6B] uppercase">CALL US</p>
-                  <p className="font-bold text-xs sm:text-sm text-[#111111] group-hover:underline truncate">+91 XXXXX</p>
+                  <div className="flex flex-wrap items-center gap-x-2 font-bold text-xs sm:text-sm text-[#111111]">
+                    <a href="tel:+916369601308" className="hover:underline" onMouseEnter={() => setCursor('hover')} onMouseLeave={resetCursor}>+91 6369601308</a>
+                    <span>/</span>
+                    <a href="tel:+919884975292" className="hover:underline" onMouseEnter={() => setCursor('hover')} onMouseLeave={resetCursor}>+91 9884975292</a>
+                  </div>
                 </div>
-              </a>
+              </div>
 
               <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-3 text-sm text-[#6B6B6B] p-3 sm:p-3.5 rounded-lg border border-[#DDDDD8] bg-[#FAFAF8]">
                 <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-md bg-[#111111] text-white flex items-center justify-center shrink-0">
